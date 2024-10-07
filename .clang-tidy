@@ -1,0 +1,28 @@
+# Configuration options for clang-tidy
+# CSS Linux machines, Sep 2019: LLVM version 3.8.1
+#
+# usage: clang-tidy *.cpp -- -std=c++14
+#
+#
+---
+# See https://clang.llvm.org/extra/clang-tidy/#using-clang-tidy for all possible checks
+Checks: '-*, bugprone-*, google-*, llvm-*, readability-*, -bugprone-easily-swappable-parameters, -google-build-using-namespace, -llvm-header-guard, -google-global-names-in-headers, -clang-diagnostic-error, -readability-magic-numbers'
+
+WarningsAsErrors:  '*'
+HeaderFilterRegex: '.*'
+
+CheckOptions:
+ - { key: readability-identifier-naming.ClassCase,           value: CamelCase  }
+ - { key: readability-identifier-naming.StructCase,          value: CamelCase  }
+ - { key: readability-identifier-naming.EnumCase,            value: CamelCase  }
+ - { key: readability-identifier-naming.GlobalConstantCase,  value: UPPER_CASE }
+
+ - { key: readability-identifier-naming.VariableCase,        value: camelBack  }
+ - { key: readability-identifier-naming.ParameterCase,       value: camelBack  }
+ - { key: readability-identifier-naming.PublicMemberCase,    value: camelBack  }
+
+# No good consensus on function names problem.isFinished() and GetInputFromUser() are both good
+# - { key: readability-identifier-naming.FunctionCase,        value: camelBack  }
+# - { key: readability-identifier-naming.PublicMethodCase,    value: camelBack  }
+# - { key: readability-identifier-naming.PrivateMethodCase,   value: camelBack  }
+

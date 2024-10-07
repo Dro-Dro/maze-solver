@@ -1,0 +1,318 @@
+Wed Nov 16 16:19:10 PST 2022
+Linux csslab4 4.18.0-372.32.1.el8_6.x86_64 #1 SMP Thu Oct 27 15:18:36 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+uid=1095404(hpeter4) gid=2121095404(hpeter4) groups=2121095404(hpeter4),605559(lab-access)
+=====================================================
+1. Compiles without warnings with -Wall -Wextra flags
+=====================================================
+=====================================================
+2. Runs and produces correct output
+=====================================================
+*** Solving maze0.txt
+Path: NEEEEEENWWWWWWWSWWWWWWWWWWNEEEEEEEEENEEEEEEEENWWWWWWWWWSWWWWWWWWNEEEEEEENEEEEEEEEEEN
+XXXXXXXXXXXXXXXXXX*X
+X       ***********X
+X******************X
+X******************X
+X******************X
+X******************X
+XXXXXXXXXXXX*XXXXXXX
+
+
+*** Solving maze1.txt
+Path: NNWWWWWNNNEEEEEESEESSSEEENNNNN
+XXXXXXXXXXXXXXXXXX*X
+X     X*******XXXX*X
+X XXXXX*XXXXX***XX*X
+X XXXXX*XXXXXXX*XX*X
+X X++++******XX*XX*X
+X XXXXXXXXXX*XX****X
+XXXXXXXXXXXX*XXXXXXX
+
+
+*** Solving maze2.txt
+Path: NEEEEEENNNNN
+XXXXXXXXXXXXXXXXXX*X
+X     X      XXXXX*X
+X XXXXX XXXX X  XX*X
+X XXXXX XXXX XX XX*X
+X X        X XX XX*X
+X XXXXXXXXXX*******X
+XXXXXXXXXXXX*XXXXXXX
+
+
+*** Solving maze3.txt
+Failed to solve: maze3.txt
+XXXXXXXXXXXXXXXXXX X
+X+++++X++++++XXXXX X
+X+X+X+X+X++X+X++XX X
+X+X+XXX+XXXX+XX+XX X
+X+X++++++++X+XX+XX X
+X+XXXXXXXXXX+++++X X
+XXXXXXXXXXXX*XXXXXXX
+
+
+*** Solving badfile.txt
+Unable to open file: badfile.txt
+Failed to load badfile.txt
+Done!
+=====================================================
+3. clang-tidy warnings are fixed
+=====================================================
+12303 warnings generated.
+28166 warnings generated.
+Suppressed 28166 warnings (28166 in non-user code).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+=====================================================
+4. clang-format does not find any formatting issues
+=====================================================
+Running clang-format on ./main.cpp
+Running clang-format on ./maze.cpp
+=====================================================
+5. No memory leaks using g++
+=====================================================
+=====================================================
+6. No memory leaks using valgrind, look for "definitely lost" 
+=====================================================
+==686907== Memcheck, a memory error detector
+==686907== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==686907== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==686907== Command: ./a.out maze0.txt maze1.txt maze2.txt maze3.txt badfile.txt
+==686907== Parent PID: 686841
+==686907== 
+==686907== 
+==686907== HEAP SUMMARY:
+==686907==     in use at exit: 0 bytes in 0 blocks
+==686907==   total heap usage: 66 allocs, 66 frees, 115,031 bytes allocated
+==686907== 
+==686907== All heap blocks were freed -- no leaks are possible
+==686907== 
+==686907== For lists of detected and suppressed errors, rerun with: -s
+==686907== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+=====================================================
+7. Tests have full code coverage
+=====================================================
+Unable to open file: badfile.txt
+Failed to load badfile.txt
+File '/home/NETID/hpeter4/css342/p3/2021au342d-p3-maze-Dro-Dro/main.cpp':
+Name                                                                                           Regions    Miss   Cover     Lines    Miss   Cover  Branches    Miss   Cover
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)         7       0 100.00%        14       0 100.00%         4       0 100.00%
+main                                                                                                 6       0 100.00%        10       0 100.00%         4       1  75.00%
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TOTAL                                                                                               13       0 100.00%        24       0 100.00%         8       1  87.50%
+
+File '/home/NETID/hpeter4/css342/p3/2021au342d-p3-maze-Dro-Dro/maze.cpp':
+Name                                                                                                 Regions    Miss   Cover     Lines    Miss   Cover  Branches    Miss   Cover
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+operator<<(std::ostream&, Maze const&)                                                                     7       0 100.00%        10       0 100.00%         4       0 100.00%
+Maze::Maze()                                                                                               1       0 100.00%         1       0 100.00%         0       0   0.00%
+Maze::load(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)         7       0 100.00%        19       0 100.00%         4       0 100.00%
+Maze::solve()                                                                                              6       2  66.67%         8       2  75.00%         4       3  25.00%
+Maze::helpSolve(int&, int&)                                                                               27       0 100.00%        33       0 100.00%        20       4  80.00%
+Maze::backTrack(int&, int&)                                                                                6       1  83.33%        20       2  90.00%        10       1  90.00%
+Maze::checkPath() const                                                                                    1       0 100.00%         1       0 100.00%         0       0   0.00%
+Maze::getPath[abi:cxx11]() const                                                                           1       0 100.00%         1       0 100.00%         0       0   0.00%
+Maze::atExit(int, int) const                                                                               3       0 100.00%         3       0 100.00%         4       1  75.00%
+Maze::isInside(int, int) const                                                                             7       0 100.00%         3       0 100.00%         8       4  50.00%
+Maze::isClear(int, int) const                                                                              9       0 100.00%         4       0 100.00%        10       3  70.00%
+Maze::markAsPath(int, int)                                                                                 1       0 100.00%         4       1  75.00%         0       0   0.00%
+Maze::markAsVisited(int, int)                                                                              1       0 100.00%         4       1  75.00%         0       0   0.00%
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TOTAL                                                                                                     77       3  96.10%       111       6  94.59%        64      16  75.00%
+/home/NETID/hpeter4/css342/p3/2021au342d-p3-maze-Dro-Dro/main.cpp:
+    1|       |#include <iostream>
+    2|       |
+    3|       |#include "maze.h"
+    4|       |
+    5|       |using namespace std;
+    6|       |
+    7|      5|void test(const string &mazeFile) {
+    8|      5|  Maze myMaze;
+    9|      5|  cout << "*** Solving " << mazeFile << endl;
+   10|      5|  if (!myMaze.load(mazeFile)) {
+   11|      1|    cerr << "Failed to load " << mazeFile << endl;
+   12|      1|    return;
+   13|      1|  }
+   14|      4|  if (myMaze.solve()) {
+   15|      3|    cout << "Path: " << myMaze.getPath() << endl;
+   16|      3|  } else {
+   17|      1|    cout << "Failed to solve: " << mazeFile << endl;
+   18|      1|  }
+   19|      4|  cout << myMaze << endl;
+   20|      4|}
+   21|       |
+   22|       |// accepts multiple maze files from command line
+   23|       |// ./a.out maze0.txt maze1.txt maze2.txt maze3.txt badfile.txt
+   24|      1|int main(int argc, char *argv[]) {
+   25|      1|  if (argc >= 1) {
+   26|      6|    for (int i = 1; i < argc; ++i) {
+   27|      5|      string mazeFile = argv[i];
+   28|      5|      test(mazeFile);
+   29|      5|    }
+   30|      1|  }
+   31|      1|  cout << "Done!" << endl;
+   32|      1|  return 0;
+   33|      1|}
+
+/home/NETID/hpeter4/css342/p3/2021au342d-p3-maze-Dro-Dro/maze.cpp:
+    1|       |//
+    2|       |// Created by Yusuf Pisan on 4/18/18.
+    3|       |//
+    4|       |
+    5|       |#include "maze.h"
+    6|       |#include <algorithm>
+    7|       |#include <cassert>
+    8|       |#include <climits>
+    9|       |#include <fstream>
+   10|       |#include <iostream>
+   11|       |#include <sstream>
+   12|       |
+   13|       |using namespace std;
+   14|       |
+   15|       |// print maze object
+   16|      4|ostream &operator<<(ostream &out, const Maze &maze) {
+   17|     32|  for (int row = 0; row < maze.height; ++row) {
+   18|    588|    for (int col = 0; col < maze.width; ++col) {
+   19|    560|      out << maze.field[row][col];
+   20|    560|    }
+   21|     28|    out << endl;
+   22|     28|  }
+   23|      4|  out << endl;
+   24|      4|  return out;
+   25|      4|}
+   26|       |
+   27|       |// default constructor
+   28|      5|Maze::Maze() = default;
+   29|       |
+   30|       |// Load maze file from current directory
+   31|      5|bool Maze::load(const string &fileName) {
+   32|      5|  ifstream inFile;
+   33|      5|  inFile.open(fileName);
+   34|      5|  if (!inFile.is_open()) {
+   35|      1|    cerr << "Unable to open file: " << fileName << endl;
+   36|       |    // next line is just to satisfy clang-tidy
+   37|       |    // otherwise it complains saying function can be const
+   38|      1|    width = height = 0;
+   39|      1|    return false;
+   40|      1|  }
+   41|      4|  inFile >> width >> height;
+   42|      4|  inFile >> exitRow >> exitColumn;
+   43|      4|  inFile >> startRow >> startColumn;
+   44|       |  // ignore leftover charcaters up to newline
+   45|      4|  inFile.ignore(INT_MAX, '\n');
+   46|      4|  string line;
+   47|     32|  for (int row = 0; row < height; ++row) {
+   48|     28|    getline(inFile, line);
+   49|     28|    field.push_back(line);
+   50|     28|  }
+   51|      4|  return true;
+   52|      5|}
+   53|       |
+   54|       |// // true if maze can be solved
+   55|      4|bool Maze::solve() {
+   56|      4|  if (startRow == exitRow && startColumn == exitColumn) {
+   57|      0|    return true;
+   58|      0|  }
+   59|      4|  int posX = startRow;
+   60|      4|  int posY = startColumn;
+   61|      4|  return helpSolve(posX, posY);
+   62|      4|}
+   63|       |
+   64|       |// helper function for solve function
+   65|    222|bool Maze::helpSolve(int &posX, int &posY) {
+   66|    222|  if (atExit(posX, posY)) {
+   67|      3|    markAsPath(posX, posY);
+   68|      3|    return true;
+   69|      3|  }
+   70|    219|  markAsPath(posX, posY);
+   71|    219|  if (isClear(posX, posY + 1) && isInside(posX, posY + 1)) {
+   72|     66|    posY++;
+   73|     66|    path.push_back('E');
+   74|     66|    return helpSolve(posX, posY);
+   75|     66|  }
+   76|    153|  if (isClear(posX + 1, posY) && isInside(posX + 1, posY)) {
+   77|     15|    posX++;
+   78|     15|    path.push_back('S');
+   79|     15|    return helpSolve(posX, posY);
+   80|     15|  }
+   81|    138|  if (isClear(posX, posY - 1) && isInside(posX, posY - 1)) {
+   82|     55|    posY--;
+   83|     55|    path.push_back('W');
+   84|     55|    return helpSolve(posX, posY);
+   85|     55|  }
+   86|     83|  if (isClear(posX - 1, posY) && isInside(posX - 1, posY)) {
+   87|     36|    posX--;
+   88|     36|    path.push_back('N');
+   89|     36|    return helpSolve(posX, posY);
+   90|     36|  }
+   91|     47|  if (!(checkPath())) {
+   92|     46|    markAsVisited(posX, posY);
+   93|     46|    backTrack(posX, posY);
+   94|     46|    return helpSolve(posX, posY);
+   95|     46|  }
+   96|      1|  return false;
+   97|       |  // see readme file
+   98|     47|}
+   99|       |
+  100|       |// backtrack helper function
+  101|     46|void Maze::backTrack(int &posX, int &posY) {
+  102|     46|  char lastPos = path.back();
+  103|     46|  path.pop_back();
+  104|     46|  switch (lastPos) {
+  105|      9|  case 'E':
+  106|      9|    posY--;
+  107|      9|    break;
+  108|      9|  case 'S':
+  109|      9|    posX--;
+  110|      9|    break;
+  111|     16|  case 'W':
+  112|     16|    posY++;
+  113|     16|    break;
+  114|     12|  case 'N':
+  115|     12|    posX++;
+  116|     12|    break;
+  117|      0|  default:
+  118|      0|    break;
+  119|     46|  }
+  120|     46|}
+  121|       |
+  122|       |// check if options have been exhausted
+  123|     47|bool Maze::checkPath() const { return path.empty(); }
+  124|       |
+  125|       |// path to exit
+  126|      3|string Maze::getPath() const { return path; }
+  127|       |
+  128|       |// true if row, column is the exit
+  129|    222|bool Maze::atExit(int row, int column) const {
+  130|    222|  return row == exitRow && column == exitColumn;
+  131|    222|}
+  132|       |
+  133|       |// true if row, column is inside the maze
+  134|    172|bool Maze::isInside(int row, int col) const {
+  135|    172|  return row >= 0 && col >= 0 && row < field.size() && col < field[row].size();
+  136|    172|}
+  137|       |
+  138|       |// true if row, column is clear to move
+  139|    593|bool Maze::isClear(int row, int col) const {
+  140|    593|  return row >= 0 && col >= 0 && row < field.size() &&
+  141|    593|         col < field[row].size() && field[row][col] == CLEAR;
+  142|    593|}
+  143|       |
+  144|       |// mark location as part of the path to exit
+  145|    222|void Maze::markAsPath(int row, int col) {
+  146|    222|  assert(row >= 0 && col >= 0 && row < field.size() && col < field[row].size());
+  147|      0|  field[row][col] = PATH;
+  148|    222|}
+  149|       |
+  150|       |// mark location as visited, not part of the path to exit
+  151|     46|void Maze::markAsVisited(int row, int col) {
+  152|     46|  assert(row >= 0 && col >= 0 && row < field.size() && col < field[row].size());
+  153|      0|  field[row][col] = VISITED;
+  154|     46|}
+
+Wed Nov 16 16:19:16 PST 2022
+=====================================================
+To create an output.txt file with all the output from this script
+Run the below command
+      ./create-output.sh > output.txt 2>&1 
+=====================================================
